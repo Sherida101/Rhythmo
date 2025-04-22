@@ -1,0 +1,16 @@
+# Go
+cli/bin/
+cli/*.exe
+
+# Java
+web/target/
+web/.classpath
+web/.project
+web/.settings/
+
+# System
+.DS_Store
+
+# User specific
+logs/
+.env
