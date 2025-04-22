@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run Rhythmo Go CLI",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${workspaceFolder}/cli",
+      "env": {},
+      "args": [],
+      "preLaunchTask": "Start PostgreSQL with Docker"
+    },
+    {
+      "name": "Run Rhythmo Spring Boot Web App",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "com.rhythmo.app.RhythmoApplication",
+      "projectName": "rhythmo-web", // Name of Java project/module
+      "args": ""
+    }
+  ]
+}

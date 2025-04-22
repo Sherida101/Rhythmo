@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Api | Rhythmo Documentation</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; max-width: 800px; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; }
+    pre code { display: block; padding: 10px; overflow-x: auto; }
+    h1, h2, h3 { color: #333; }
+  </style>
+</head>
+<body>
+<h1 id="rhythmo-build-better-habits-with-rhythm">Rhythmo — Build better
+habits with rhythm</h1>
+<p>📦 <strong>File:</strong> api.md 🔗 Repo: <a
+href="https://github.com/Sherida101/Rhythmo">https://github.com/Sherida101/Rhythmo</a></p>
+<hr />
+<h1 id="rhythmo-rest-api">📡 Rhythmo REST API</h1>
+<p>This is the REST API for the Rhythmo Spring Boot backend. It exposes
+endpoints to manage user habits.</p>
+<h2 id="base-url">🔗 Base URL</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">http://localhost:8080/api/habits</span></span></code></pre></div>
+<p>To set the base API URL using flags or a config file:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./habit-cli</span> <span class="at">--api</span><span class="op">=</span>http://localhost:8080/api/habits</span></code></pre></div>
+<hr />
+<h2 id="endpoints">📘 Endpoints</h2>
+<h3 id="get-all-users">🧾 Get All Users</h3>
+<p><strong>GET</strong> <code>/api/users</code></p>
+<p><strong>Example</strong>
+<code>curl http://localhost:8080/api/users</code></p>
+<p><strong>Response</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Jane Doe&quot;</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;email&quot;</span><span class="fu">:</span> <span class="st">&quot;jane.doe@example.com&quot;</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;password&quot;</span><span class="fu">:</span> <span class="st">&quot;hashed_password&quot;</span><span class="fu">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-17&quot;</span><span class="fu">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;updatedAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-17&quot;</span><span class="fu">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lastLogin&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-17&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<h3 id="get-all-habits">🧾 Get All Habits</h3>
+<p><strong>GET</strong> <code>/api/habits</code></p>
+<p><strong>Example</strong></p>
+<p><code>curl http://localhost:8080/api/habits</code></p>
+<p><strong>Response</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Read Book&quot;</span><span class="fu">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;lastDone&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-17&quot;</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;streak&quot;</span><span class="fu">:</span> <span class="dv">4</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<h3 id="create-habit">➕ Create Habit</h3>
+<p><strong>POST</strong> <code>/api/habits</code></p>
+<p><strong>Example</strong></p>
+<p><code>curl http://localhost:8080/api/habits -X POST -H "Content-Type: application/json" -d '{"name": "Exercise", "lastDone": "2025-04-18", "streak": 1}'</code></p>
+<p><strong>Request Body</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Exercise&quot;</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;lastDone&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-18&quot;</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;streak&quot;</span><span class="fu">:</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<p><strong>Response</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Exercise&quot;</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;lastDone&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-18&quot;</span><span class="fu">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;streak&quot;</span><span class="fu">:</span> <span class="dv">1</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="update-habit">✏️ Update Habit</h3>
+<p><strong>PUT</strong> <code>/api/habits/{id}</code></p>
+<p><strong>Example</strong></p>
+<p><code>curl http://localhost:8080/api/habits/1 -X PUT -H "Content-Type: application/json" -d '{"name": "Exercise", "lastDone": "2025-04-19", "streak": 2}'</code></p>
+<p><strong>Request Body</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Exercise&quot;</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;lastDone&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-19&quot;</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;streak&quot;</span><span class="fu">:</span> <span class="dv">2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">}</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div>
+<h3 id="delete-habit">❌ Delete Habit</h3>
+<p><strong>DELETE</strong> <code>/api/habits/{id}</code></p>
+<p><strong>Example</strong>:
+<code>curl http://localhost:8080/api/habits/1 -X DELETE</code></p>
+<p><strong>Response</strong></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="er">204</span> <span class="er">No</span> <span class="er">Content</span></span></code></pre></div>
+<hr />
+<h2 id="future-improvements">🔐 Future Improvements</h2>
+<h3 id="core-functionality-foundation">🛠️ Core Functionality
+(Foundation)</h3>
+<ul>
+<li><strong>Data Management</strong>
+<ul>
+<li><p>Store data in PostgreSQL</p></li>
+<li><p>Use JPA (Hibernate) for models</p></li>
+<li><p>Add validation methods to ensure that the habit data is valid
+(e.g., check if the name is not empty, the frequency is valid,
+etc.)</p></li>
+<li><p>Add methods to convert the habit to a DTO (Data Transfer Object)
+for API responses or to a different format for storage in a different
+database</p></li>
+</ul></li>
+<li><strong>User Management</strong>
+<ul>
+<li>Spring Security for authentication (JWT or session)</li>
+<li>User-specific habits</li>
+</ul></li>
+<li><strong>Habit Tracking</strong>
+<ul>
+<li>Handle user interactions, such as marking a habit as done, skipping
+a habit, etc.</li>
+<li>Calculate progress, check if a habit is due, etc.</li>
+<li>Handle habit history, such as tracking the progress over time,
+tracking the streak, etc.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="enhanced-user-experience-growth">📈 Enhanced User Experience
+(Growth)</h3>
+<ul>
+<li><strong>Analytics &amp; Visualisation</strong>
+<ul>
+<li><p>Habit completion history</p></li>
+<li><p>Track time spent per habit</p></li>
+<li><p>Handle habit analytics, such as tracking the success rate,
+tracking the completion rate, etc.</p></li>
+<li><p>Add a calendar heatmap like GitHub streaks</p></li>
+</ul></li>
+<li><strong>Reminders &amp; Notifications</strong>
+<ul>
+<li><p>Handle reminders, notifications, etc.</p></li>
+<li><p>Handle habit reminders, such as sending reminders for a habit,
+snoozing reminders for a habit, etc.</p></li>
+<li><p>Handle habit notifications, such as sending notifications for a
+habit, snoozing notifications for a habit, etc.</p></li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="expansion-engagement-scaling">🚀 Expansion &amp; Engagement
+(Scaling)</h3>
+<ul>
+<li><strong>Gamification &amp; Social Features</strong>
+<ul>
+<li><p>Handle habit gamification, such as adding points for completing a
+habit, adding badges for completing a habit, etc.</p></li>
+<li><p>Handle habit challenges, such as creating a challenge for a
+habit, joining a challenge for a habit, etc.</p></li>
+<li><p>Handle habit rewards, such as adding rewards for completing a
+habit, redeeming rewards for completing a habit, etc.</p></li>
+<li><p>Handle habit penalties, such as adding penalties for skipping a
+habit, redeeming penalties for skipping a habit, etc.</p></li>
+<li><p>Handle habit sharing, such as sharing a habit with a friend,
+sharing a habit with a group, etc.</p></li>
+</ul></li>
+<li><strong>Integration &amp; Synchronisation</strong>
+<ul>
+<li>Handle habit synchronisation, such as syncing a habit with a
+calendar, syncing a habit with a task manager, etc.</li>
+<li>Handle habit integration, such as integrating a habit with a fitness
+tracker, integrating a habit with a health app, etc.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="platform-expansion-future-development">📱 Platform Expansion
+(Future Development)</h3>
+<ul>
+<li><strong>Mobile Development</strong>
+<ul>
+<li>Build a mobile app later using Kotlin or Flutter and sync with
+backend</li>
+</ul></li>
+<li><strong>Feature Expansion</strong>
+<ul>
+<li>Expansion from habits to lifestyle, journaling, routines, etc.</li>
+</ul></li>
+<li><strong>Performance Enhancements</strong>
+<ul>
+<li>Add concurrency later to process multiple habits or reminders.</li>
+</ul></li>
+</ul>
+<hr />
+<h3 id="front-end">Front end</h3>
+<ul>
+<li>Add/Edit/Delete Habits</li>
+<li>Mark as done</li>
+<li>View streaks visually</li>
+</ul>
+<h3 id="planned-endpoints">Planned endpoints</h3>
+<ul>
+<li>Fetch all habits from the server</li>
+<li>Post new habits</li>
+<li>Mark habits as done</li>
+<li>Push/pull sync logic</li>
+</ul>
+</body></html>

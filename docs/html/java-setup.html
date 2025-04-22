@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Java Setup | Rhythmo Documentation</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; max-width: 800px; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; }
+    pre code { display: block; padding: 10px; overflow-x: auto; }
+    h1, h2, h3 { color: #333; }
+  </style>
+</head>
+<body>
+<h1 id="rhythmo-build-better-habits-with-rhythm">Rhythmo — Build better
+habits with rhythm</h1>
+<p>📦 <strong>File:</strong> java-setup.md 🔗 Repo: <a
+href="https://github.com/Sherida101/Rhythmo">https://github.com/Sherida101/Rhythmo</a></p>
+<hr />
+<p>–</p>
+<h2 id="java-setup.md">📗 <code>java-setup.md</code></h2>
+<p>📌 Please note that Linux Ubuntu/Debian, Vim, Curl and VSCode are
+used as the OS and IDE in this guide. You can use any OS or IDE of your
+choice, but the commands may vary slightly.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># 📗 Create a Java Spring Boot REST API</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Perquisites</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Follow the <span class="in">`[Go Setup](docs/go-setup.md)`</span> guide to set up the Go CLI first.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">### Install VSCode extensions</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Tool    Extension</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Java    Java Extension Pack (by Microsoft)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Maven   Maven for Java</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Spring Boot Spring Boot Extension Pack</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Install JDK &amp; Maven</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install openjdk-17-jdk</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Set JAVA_HOME environment variable</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64&#39;</span> <span class="op">&gt;&gt;</span> .bashrc</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .bashrc</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify Java Installation</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">java</span> <span class="at">-version</span></span></code></pre></div>
+<h2 id="create-spring-boot-project">Create Spring Boot project</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Navigate to the project directory</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Rhythmo</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new directory for the Java project</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> web <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> web</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new Spring Boot project using curl</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> https://start.spring.io/starter.zip <span class="dt">\</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> dependencies=web,devtools,thymeleaf,data-jpa,h2 <span class="dt">\</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> name=rhythmo-web <span class="dt">\</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">-o</span> web.zip <span class="kw">&amp;&amp;</span> <span class="fu">unzip</span> web.zip <span class="kw">&amp;&amp;</span> <span class="fu">rm</span> web.zip</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a basic controller. Copy/paste the code from `HomeController.java` below</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># into the created `HomeController.java` file and save it.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">[HomeController.java]</span><span class="er">(</span><span class="ex">web/src/main/java/com/rhythmo/app/controller/HomeController.java</span><span class="kw">)</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the Web app/Test it</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> web</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">./mvnw</span> spring-boot:run</span></code></pre></div>
+<h2 id="errors-and-solutions">Errors and Solutions</h2>
+<h3
+id="error-vscode-not-recognising-changes-in-the-project-structure-immediately">Error:
+<code>VSCode not recognising changes in the project structure immediately</code></h3>
+<ul>
+<li><p><strong>Cause:</strong> This is a common issue with VSCode where
+it does not immediately recognize changes in the project structure,
+especially after creating new files or directories.</p></li>
+<li><p><strong>Solution:</strong> Restart the VSCode IDE to refresh the
+project structure.</p></li>
+</ul>
+<ol type="1">
+<li>Open the Command Palette (Ctrl+Shift+P or Cmd+Shift+P on
+macOS).</li>
+<li>Type Java: Clean the Java language server workspace and select
+it.</li>
+<li>Restart VSCode.</li>
+</ol>
+<p>or run the following</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> install</span></code></pre></div>
+<h2 id="creating-models-repositories-rest-controller">Creating models,
+repositories, REST controller</h2>
+<h2 id="running-the-api">Running the API</h2>
+</body></html>

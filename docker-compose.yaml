@@ -1,0 +1,57 @@
+# Docker Compose file for Rhythmo application
+# This file defines the services, networks, and volumes for the Rhythmo application
+
+# To run this setup, use the following command in the root directory of the project:
+# docker-compose up -d
+
+# Check if the PostgreSQL container is running
+# docker-compose ps
+
+# View logs for the PostgreSQL container
+# docker-compose logs db
+
+# Connect to PostgreSQL database
+# docker exec -it <container_name> psql -U rhythmo_user -d rhythmo_db
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: rhythmo_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rhythmo_user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rhythmo_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: rhythmo_web
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rhythmo_db
+      SPRING_DATASOURCE_USERNAME: rhythmo_user
+      SPRING_DATASOURCE_PASSWORD: password
+
+  cli:
+    build: ./cli
+    container_name: rhythmo_cli
+    depends_on:
+      - web
+    environment:
+      API_URL: http://web:8080
+
+# Define named volumes that can be shared across multiple services
+volumes:
+  db_data:
+    driver: local

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Full Stack Walkthrough | Rhythmo Documentation</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; max-width: 800px; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; }
+    pre code { display: block; padding: 10px; overflow-x: auto; }
+    h1, h2, h3 { color: #333; }
+  </style>
+</head>
+<body>
+<h1 id="rhythmo-build-better-habits-with-rhythm">Rhythmo — Build better
+habits with rhythm</h1>
+<p>📦 <strong>File:</strong> full-stack-walkthrough.md</p>
+<p>🔗 Repo: <a
+href="https://github.com/Sherida101/Rhythmo">https://github.com/Sherida101/Rhythmo</a></p>
+<hr />
+<h2 id="full-stack-walkthrough.md">🧱
+<code>full-stack-walkthrough.md</code></h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## How the Go CLI talks to the Spring Boot API</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>The **Rhythmo** project consists of two main components: a **Go CLI** application and a **Spring Boot API**. These two components interact via Hypertext Transfer Protocol (HTTP) requests. </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>The Go Command-line interface (CLI) communicates with the Spring Boot Application Programming Interface (API) by making Representational State Transferful (RESTful) requests to the endpoints exposed by the Spring Boot server. These requests can be used to fetch, create, update or delete resources like &quot;Habits&quot; in the application.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">### Go CLI</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Go CLI uses the <span class="in">`pgx`</span> package for PostgreSQL connections and the <span class="in">`net/http`</span> package for making HTTP requests to the Spring Boot API.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>HTTP requests are sent to the Spring Boot API for actions such as creating or updating habits.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Go CLI can also send GET requests to retrieve habits based on specific parameters such as user ID or category.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">### Spring Boot API</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The Spring Boot application exposes RESTful API endpoints, which can handle HTTP requests from the Go CLI.</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The API is built with Spring Boot, using controllers to manage routes and services to handle business logic.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The API uses **JPA** and **PostgreSQL** to manage the Habit entities and data persistence.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>The data exchange between the Go CLI and the Spring Boot API follows the **JSON format**, making it easy to send and receive structured data.</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## How to run both sides</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### 1. Running the Go CLI</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Please ensure that you have **Go** installed on your system. To run the Go CLI, follow these steps:</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Clone the Go repository:</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="in">```bash</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">git</span> clone https://github.com/Sherida101/Rhytmo.git</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="bu">cd</span> Rhythmo</span></code></pre></div>
+<p>Set up your environment by creating a .env file containing your
+PostgreSQL database credentials:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">DB_USER</span><span class="op">=&lt;</span>your_db_user<span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PASSWORD</span><span class="op">=&lt;</span>your_db_password<span class="op">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">DB_HOST</span><span class="op">=&lt;</span>your_db_host<span class="op">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">DB_PORT</span><span class="op">=&lt;</span>your_db_port<span class="op">&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">DB_NAME</span><span class="op">=&lt;</span>your_db_name<span class="op">&gt;</span></span></code></pre></div>
+<p><strong>Install the necessary Go dependencies</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> mod tidy</span></code></pre></div>
+<p><strong>Run the Go CLI</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">go</span> run main.go</span></code></pre></div>
+<h3 id="running-the-spring-boot-api">2. Running the Spring Boot API</h3>
+<p>Please Ensure that you have Java and Maven installed on your system.
+To run the Spring Boot API, follow these steps:</p>
+<p><strong>Clone the Spring Boot repository</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/Sherida101/Rhythmo.git</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Rhythmo</span></code></pre></div>
+<p><strong>Set up the PostgreSQL database connection in the
+application.properties or application.yml file</strong></p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">spring.datasource.url=jdbc:postgresql://localhost:5432/</span><span class="op">&lt;</span>your_db_name<span class="op">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">spring.datasource.username=</span><span class="op">&lt;</span>your_db_user<span class="op">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">spring.datasource.password=</span><span class="op">&lt;</span>your_db_password<span class="op">&gt;</span></span></code></pre></div>
+<p><strong>Build and run the Spring Boot application</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean install</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> spring-boot:run</span></code></pre></div>
+<p>This will start the Spring Boot application on port 8080 by default.
+You can access the API at <code>http://localhost:8080</code>.</p>
+<h2 id="how-they-are-connected-url-ports-formats">How they are connected
+(URL, ports, formats)</h2>
+<ul>
+<li><p>Go CLI communicates with Spring Boot API using HTTP
+requests.</p></li>
+<li><p>Spring Boot API URL: http://localhost:8080</p>
+<ul>
+<li><p>Example endpoints:</p>
+<ul>
+<li><p>GET /habits - Retrieve all habits</p></li>
+<li><p>POST /habits - Create a new habit</p></li>
+<li><p>PUT /habits/{id} - Update a habit</p></li>
+<li><p>DELETE /habits/{id} - Delete a habit</p></li>
+</ul></li>
+</ul></li>
+<li><p>The Go CLI makes requests to these endpoints with data formatted
+as JSON.</p></li>
+<li><p>Both sides use PostgreSQL for persistent storage, ensuring the
+data is stored and shared between the two applications.</p></li>
+</ul>
+<p><strong>Example of a Go CLI request</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode go"><code class="sourceCode go"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>resp<span class="op">,</span> err <span class="op">:=</span> http<span class="op">.</span>Post<span class="op">(</span><span class="st">&quot;http://localhost:8080/habits&quot;</span><span class="op">,</span> <span class="st">&quot;application/json&quot;</span><span class="op">,</span> bytes<span class="op">.</span>NewBuffer<span class="op">(</span>jsonData<span class="op">))</span></span></code></pre></div>
+<p><strong>Example of a Spring Boot API response</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;Exercise&quot;</span><span class="fu">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;category&quot;</span><span class="fu">:</span> <span class="st">&quot;Health&quot;</span><span class="fu">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;status&quot;</span><span class="fu">:</span> <span class="st">&quot;Active&quot;</span><span class="fu">,</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2025-04-21T12:00:00Z&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h2 id="screenshots-or-terminal-output">Screenshots or terminal
+output</h2>
+<ol type="1">
+<li><strong>Example Output from Go CLI</strong></li>
+</ol>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> go run main.go</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Successfully</span> created habit: Exercise</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Habit</span> ID: 1</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Status:</span> Active</span></code></pre></div>
+<ol start="2" type="1">
+<li><strong>Example Output from Spring Boot API</strong></li>
+</ol>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mvn spring-boot:run</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">2025-04-21</span> 12:00:00.000  INFO 12345 <span class="at">---</span> [           main] c.r.a.RhythmoApplication                : Started RhythmoApplication in 5.678 seconds <span class="er">(</span><span class="ex">JVM</span> running for 6.234<span class="kw">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">2025-04-21</span> 12:00:10.123  INFO 12345 <span class="at">---</span> <span class="pp">[</span><span class="ss">io</span><span class="pp">-</span><span class="ss">8080</span><span class="pp">-</span><span class="ss">exec</span><span class="pp">-</span><span class="ss">1</span><span class="pp">]</span> c.r.a.controller.HabitController        : Created habit with ID 1</span></code></pre></div>
+<p>This shows the Go CLI successfully communicating with the Spring Boot
+API and creating a new habit.</p>
+</body></html>
